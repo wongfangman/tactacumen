@@ -162,7 +162,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         Uri.parse(
             "https://hubbuddies.com/271221/tactacumen/php/register_user.php"),
         body: {"email": email, "password": password}).then((response) {
-      print(response.body);
       if (response.body == "success") {
         Fluttertoast.showToast(
             msg:

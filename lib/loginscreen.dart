@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'mainscreen.dart';
+import 'package:tactacumen/homecreen.dart';
 import 'registrationscreen.dart';
-import 'user.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -120,16 +119,8 @@ class _LoginScreenState extends State<LoginScreen> {
             textColor: Colors.white,
             fontSize: 16.0);
       } else {
-        List userdata = response.body.split(",");
-        User user = User(
-            email: _email,
-            password: _password,
-            datareg: userdata[1],
-            rating: userdata[2],
-            credit: userdata[3],
-            status: userdata[4]);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (content) => MainScreen(user: user)));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (content) => HomeScreen()));
       }
     });
   }
@@ -249,7 +240,6 @@ class _LoginScreenState extends State<LoginScreen> {
         Uri.parse(
             "https://hubbuddies.com/271221/tactacumen/php/forgot_password.php"),
         body: {"email": emailreset}).then((response) {
-      print(response.body);
       if (response.body == "success") {
         Fluttertoast.showToast(
             msg:
