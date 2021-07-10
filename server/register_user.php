@@ -12,11 +12,12 @@ $user_email = $_POST['email'];
 $password = $_POST['password'];
 $passhal1 = sha1($password);
 $otp = rand(10000,99999);
-$rating = "0";
-$credit = "0";
-$status = "active";
+$fullname = "";
+$phoneno = "";
+$gender = "";
+$birthday = "";
 
-$sqlregister = "INSERT INTO tbl_user(user_email,password,otp,rating,credit,status) VALUES('$user_email','$passhal1','$otp','$rating','$credit','$status')";
+$sqlregister = "INSERT INTO tbl_user(user_email,password,otp,fullname,phoneno,gender,birthday) VALUES('$user_email','$passhal1','$otp','$fullname','$phoneno','$gender','$birthday')";
 if($conn->query($sqlregister) === TRUE){
     echo "success";
     sendEmail($otp,$user_email);

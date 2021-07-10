@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
-import 'package:tactacumen/homecreen.dart';
+import 'package:tactacumen/user/home/homecreen.dart';
+import 'package:tactacumen/user/home/user.dart';
 import 'registrationscreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -119,8 +120,16 @@ class _LoginScreenState extends State<LoginScreen> {
             textColor: Colors.white,
             fontSize: 16.0);
       } else {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (content) => HomeScreen()));
+        List userdata = response.body.split(",");
+        User user = User(
+            email: userdata[1],
+            datareg: userdata[2],
+            fullname: userdata[3],
+            phoneno: userdata[4],
+            gender: userdata[5],
+            birthday: userdata[6]);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (content) => HomeScreen(user: user)));
       }
     });
   }

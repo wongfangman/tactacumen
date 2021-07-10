@@ -22,6 +22,10 @@ if ($result->num_rows > 0){
         $prlist[prtype] = $row['prtype'];
         $prlist[prprice] = $row['prprice'];
         $prlist[prqty] = $row['prqty'];
+        $prlist[prdescription] = $row['prdescription'];
+        $prlist[prlength] = $row['prlength'];
+        $prlist[prwidth] = $row['prwidth'];
+        $prlist[prheight] = $row['prheight'];
         $prlist[datecreated] = $row['datecreated'];
         array_push($response["products"],$prlist);
     }
